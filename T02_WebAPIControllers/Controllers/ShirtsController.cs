@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using T02_WebAPIControllers.Filters;
 using T02_WebAPIControllers.Models;
 using T02_WebAPIControllers.Models.Repositories;
 
@@ -21,21 +22,10 @@ namespace T02_WebAPIControllers.Controllers
 		}
 
 		[HttpGet("{id}")]
+		[Shirt_ValidateShirtIdFilter]
 		public IActionResult ReadShirtById(int id)
 		{
-			if (id < 1)
-			{
-				return BadRequest();
-			}
-
-			var shirt = ShirtRepository.GetShirtById(id);
-
-			if (shirt == null)
-			{
-				return NotFound();
-			}
-
-			return Ok(shirt);
+			return Ok(ShirtRepository.GetShirtById(id));
 		}
 
 		[HttpPut("{id}")]
