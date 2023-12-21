@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T01_MinimalAPI", "T01_Minim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T02_WebAPIControllers", "T02_WebAPIControllers\T02_WebAPIControllers.csproj", "{82F15C69-3138-4E6E-A1B2-13762AC9B71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T03_ImplementingEndpoints", "T03_ImplementingEndpoints\T03_ImplementingEndpoints.csproj", "{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T03_ImplementingEndpoints", "T03_ImplementingEndpoints\T03_ImplementingEndpoints.csproj", "{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T04_EntityFrameworkCore", "T04_EntityFrameworkCore\T04_EntityFrameworkCore.csproj", "{61F63237-1C53-4BC4-A67E-0A32A3A470CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
