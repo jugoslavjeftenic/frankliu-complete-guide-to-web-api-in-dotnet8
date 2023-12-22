@@ -5,6 +5,7 @@ namespace T04_EntityFrameworkCore.Models
 {
 	public class ShirtModel
 	{
+		[Key]
 		public int ShirtId { get; set; }
 
 		[Required]
