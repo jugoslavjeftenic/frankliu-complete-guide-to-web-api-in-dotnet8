@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using T04_EntityFrameworkCore.Data;
 using T04_EntityFrameworkCore.Models;
 
 namespace T04_EntityFrameworkCore.Filters.ActionFilters
@@ -20,7 +21,6 @@ namespace T04_EntityFrameworkCore.Filters.ActionFilters
 					Status = StatusCodes.Status400BadRequest
 				};
 				context.Result = new BadRequestObjectResult(problemDetails);
-
 			}
 		}
 	}
