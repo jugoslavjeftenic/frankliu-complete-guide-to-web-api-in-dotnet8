@@ -19,8 +19,17 @@ namespace T05_MVCProject.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult CreateShirt(ShirtModel shirt)
+		public async Task<IActionResult> CreateShirt(ShirtModel shirt)
 		{
+			if (ModelState.IsValid)
+			{
+				var response = await _webApiExecuter.InvokePost("shirts", shirt);
+				if (response != null)
+				{
+					return RedirectToAction("Index");
+				}
+			}
+
 			return View(shirt);
 		}
 	}
