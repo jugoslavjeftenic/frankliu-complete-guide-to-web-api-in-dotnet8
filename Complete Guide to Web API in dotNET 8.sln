@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T02_WebAPIControllers", "T0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T03_ImplementingEndpoints", "T03_ImplementingEndpoints\T03_ImplementingEndpoints.csproj", "{81E5478F-8266-4EC5-AA35-AE0211DE2AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T04_EntityFrameworkCore", "T04_EntityFrameworkCore\T04_EntityFrameworkCore.csproj", "{61F63237-1C53-4BC4-A67E-0A32A3A470CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T04_EntityFrameworkCore", "T04_EntityFrameworkCore\T04_EntityFrameworkCore.csproj", "{61F63237-1C53-4BC4-A67E-0A32A3A470CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T05_MVCProject", "T05_MVCProject\T05_MVCProject.csproj", "{24037037-A230-4065-912B-3F7264419A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24037037-A230-4065-912B-3F7264419A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24037037-A230-4065-912B-3F7264419A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
