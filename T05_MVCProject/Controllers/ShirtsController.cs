@@ -12,5 +12,16 @@ namespace T05_MVCProject.Controllers
 		{
 			return View(await _webApiExecuter.InvokeGet<List<ShirtModel>>("shirts"));
 		}
+
+		public IActionResult CreateShirt()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult CreateShirt(ShirtModel shirt)
+		{
+			return View(shirt);
+		}
 	}
 }
