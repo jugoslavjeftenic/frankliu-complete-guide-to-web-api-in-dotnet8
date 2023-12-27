@@ -50,10 +50,16 @@ namespace T05_MVCProject.Controllers
 			if (ModelState.IsValid)
 			{
 				await _webApiExecuter.InvokePut($"shirts/{shirt.ShirtId}", shirt);
-				return RedirectToAction("Index");
+				return RedirectToAction(nameof(Index));
 			}
 
 			return View(shirt);
+		}
+
+		public async Task<IActionResult> DeleteShirt(int shirtId)
+		{
+			await _webApiExecuter.InvokeDelete($"shirts/{shirtId}");
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }
