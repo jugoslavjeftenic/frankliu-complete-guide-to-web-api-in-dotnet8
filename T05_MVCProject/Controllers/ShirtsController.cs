@@ -32,5 +32,28 @@ namespace T05_MVCProject.Controllers
 
 			return View(shirt);
 		}
+
+		public async Task<IActionResult> UpdateShirt(int shirtId)
+		{
+			var shirt = await _webApiExecuter.InvokeGet<ShirtModel>($"shirts/{shirtId}");
+			if (shirt != null)
+			{
+				return View(shirt);
+			}
+
+			return NotFound();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> UpdateShirt(ShirtModel shirt)
+		{
+			if (ModelState.IsValid)
+			{
+				await _webApiExecuter.InvokePut($"shirts/{shirt.ShirtId}", shirt);
+				return RedirectToAction("Index");
+			}
+
+			return View(shirt);
+		}
 	}
 }
