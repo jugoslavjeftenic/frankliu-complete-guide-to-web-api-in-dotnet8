@@ -1,0 +1,6 @@
+@T008_WebApiControllers_HostAddress = http://localhost:5003
+
+GET {{T008_WebApiControllers_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

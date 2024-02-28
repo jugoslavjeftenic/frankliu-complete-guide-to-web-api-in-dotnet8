@@ -1,6 +1,0 @@
-@T02_WebAPIControllers_HostAddress = http://localhost:5014
-
-GET {{T02_WebAPIControllers_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
