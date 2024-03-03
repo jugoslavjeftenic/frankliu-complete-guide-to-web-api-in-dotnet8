@@ -7,53 +7,72 @@ namespace T008_WebApiControllers.Controllers
 	[Route("api/v1/[controller]")]
 	public class ShirtsController : ControllerBase
 	{
+		private readonly List<ShirtModel> _shirts =
+		[
+			new ShirtModel{ ShirtId = 1, Brand = "My Brand", Color = "Blue", Gender = "Men", Price = 30, Size = 10 },
+			new ShirtModel{ ShirtId = 2, Brand = "My Brand", Color = "Black", Gender = "Men", Price = 35, Size = 12 },
+			new ShirtModel{ ShirtId = 3, Brand = "Your Brand", Color = "Pink", Gender = "Women", Price = 28, Size = 8 },
+			new ShirtModel{ ShirtId = 4, Brand = "Your Brand", Color = "Yello", Gender = "Women", Price = 30, Size = 9 }
+		];
 
 		[HttpGet]
-		public string GetShirts()
+		public IActionResult GetShirts()
 		{
-			return "Reading all the shirts.";
+			return Ok("Reading all the shirts.");
 		}
 
 		[HttpGet("{id}")]
-		public string GetShirtById(int id)
+		public IActionResult GetShirtById(int id)
 		{
-			return $"Reading shirt with id: {id}.";
+			if (id < 1)
+			{
+				return BadRequest();
+			}
+
+			var shirt = _shirts.FirstOrDefault(x => x.ShirtId == id);
+
+			if (shirt is null)
+			{
+				return NotFound();
+			}
+
+			return Ok(shirt);
 		}
 
 		[HttpGet("routeColor/{color}")]
-		public string GetShirtByColorFromRoute([FromRoute] string color)
+		public IActionResult GetShirtByColorFromRoute([FromRoute] string color)
 		{
-			return $"Reading shirt with color: {color}.";
+			return Ok($"Reading shirt with color: {color}.");
 		}
 
 		[HttpGet("queryColor")]
-		public string GetShirtByColorFromQuery([FromQuery] string color)
+		public IActionResult GetShirtByColorFromQuery([FromQuery] string color)
 		{
-			return $"Reading shirt with color: {color}.";
+			return Ok($"Reading shirt with color: {color}.");
 		}
 
 		[HttpGet("headerColor")]
-		public string GetShirtByColorFromHeader([FromHeader(Name = "Color")] string color)
+		public IActionResult GetShirtByColorFromHeader([FromHeader(Name = "Color")] string color)
 		{
-			return $"Reading shirt with color: {color}.";
+			return Ok($"Reading shirt with color: {color}.");
 		}
 
 		[HttpPost]
-		public string CreateShirt([FromBody] ShirtModel shirt)
+		public IActionResult CreateShirt([FromBody] ShirtModel shirt)
 		{
-			return $"Creating a shirt ({shirt.Brand}, {shirt.Color}).";
+			return Ok($"Creating a shirt ({shirt.Brand}, {shirt.Color}).");
 		}
 
 		[HttpPut("{id}")]
-		public string UpdateShirt(int id, [FromForm] ShirtModel shirt)
+		public IActionResult UpdateShirt(int id, [FromForm] ShirtModel shirt)
 		{
-			return $"Updating shirt with id: {id} ({shirt.Brand}, {shirt.Color}).";
+			return Ok($"Updating shirt with id: {id} ({shirt.Brand}, {shirt.Color}).");
 		}
 
 		[HttpDelete("{id}")]
-		public string DeleteShirt(int id)
+		public IActionResult DeleteShirt(int id)
 		{
-			return $"Deleting shirt with id: {id}.";
+			return Ok($"Deleting shirt with id: {id}.");
 		}
 	}
 }
