@@ -16,7 +16,7 @@
 
 		public static bool ShirtExists(int id)
 		{
-			return _shirts.Any(x => x.Equals(id));
+			return _shirts.Any(x => x.ShirtId.Equals(id));
 		}
 
 		public static ShirtModel? GetShirtById(int id)
