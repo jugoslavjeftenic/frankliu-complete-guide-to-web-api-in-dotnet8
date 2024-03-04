@@ -12,7 +12,7 @@ namespace T016_ImplementingEndpoints.Controllers
 		[HttpGet]
 		public IActionResult GetShirts()
 		{
-			return Ok("Reading all the shirts.");
+			return Ok(ShirtRepository.GetShirts());
 		}
 
 		[HttpGet("{id}")]

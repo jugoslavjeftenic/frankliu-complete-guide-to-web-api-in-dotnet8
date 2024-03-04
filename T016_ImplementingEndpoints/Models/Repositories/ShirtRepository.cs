@@ -14,6 +14,11 @@
 				Price = 30, Size = 9 }
 		];
 
+		public static List<ShirtModel> GetShirts()
+		{
+			return _shirts;
+		}
+
 		public static bool ShirtExists(int id)
 		{
 			return _shirts.Any(x => x.ShirtId.Equals(id));
