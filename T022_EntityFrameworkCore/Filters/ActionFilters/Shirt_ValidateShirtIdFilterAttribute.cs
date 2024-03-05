@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using T022_EntityFrameworkCore.Models.Repositories;
+using T022_EntityFrameworkCore.Data;
 
 namespace T022_EntityFrameworkCore.Filters.ActionFilters
 {
-	public class Shirt_ValidateShirtIdFilterAttribute : ActionFilterAttribute
+	public class Shirt_ValidateShirtIdFilterAttribute(ApplicationDbContext db) : ActionFilterAttribute
 	{
+		private readonly ApplicationDbContext _db = db;
+
 		public override void OnActionExecuting(ActionExecutingContext context)
 		{
 			base.OnActionExecuting(context);
@@ -23,16 +25,24 @@ namespace T022_EntityFrameworkCore.Filters.ActionFilters
 
 					context.Result = new BadRequestObjectResult(problemDetails);
 				}
-				else if (ShirtRepository.ShirtExists(shirtId.Value) is not true)
+				else
 				{
-					context.ModelState.AddModelError("ShirtId", "Shirt doesn't exist.");
+					var shirt = _db.Shirts.Find(shirtId.Value);
 
-					var problemDetails = new ValidationProblemDetails(context.ModelState)
+					if (shirt is null)
 					{
-						Status = StatusCodes.Status404NotFound
-					};
+						context.ModelState.AddModelError("ShirtId", "Shirt doesn't exist.");
+						var problemDetails = new ValidationProblemDetails(context.ModelState)
+						{
+							Status = StatusCodes.Status404NotFound
+						};
 
-					context.Result = new BadRequestObjectResult(problemDetails);
+						context.Result = new BadRequestObjectResult(problemDetails);
+					}
+					else
+					{
+						context.HttpContext.Items["shirt"] = shirt;
+					}
 				}
 			}
 		}

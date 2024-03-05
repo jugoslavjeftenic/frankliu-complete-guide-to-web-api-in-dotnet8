@@ -32,7 +32,7 @@ namespace T022_EntityFrameworkCore.Controllers
 
 		// Update
 		[HttpPut("{id}")]
-		[Shirt_ValidateShirtIdFilter]
+		[TypeFilter(typeof(Shirt_ValidateShirtIdFilterAttribute))]
 		[Shirt_ValidateUpdateShirtFilter]
 		[Shirt_HandleUpdateExceptionsFilter]
 		public IActionResult UpdateShirt(int id, ShirtModel shirt)
@@ -44,7 +44,7 @@ namespace T022_EntityFrameworkCore.Controllers
 
 		// Delete
 		[HttpDelete("{id}")]
-		[Shirt_ValidateShirtIdFilter]
+		[TypeFilter(typeof(Shirt_ValidateShirtIdFilterAttribute))]
 		public IActionResult DeleteShirt(int id)
 		{
 			var shirt = ShirtRepository.GetShirtById(id);
@@ -55,28 +55,10 @@ namespace T022_EntityFrameworkCore.Controllers
 
 		// ReadById
 		[HttpGet("{id}")]
-		[Shirt_ValidateShirtIdFilter]
+		[TypeFilter(typeof(Shirt_ValidateShirtIdFilterAttribute))]
 		public IActionResult GetShirtById(int id)
 		{
-			return Ok(ShirtRepository.GetShirtById(id));
-		}
-
-		[HttpGet("routeColor/{color}")]
-		public IActionResult GetShirtByColorFromRoute([FromRoute] string color)
-		{
-			return Ok($"Reading shirt with color: {color}.");
-		}
-
-		[HttpGet("queryColor")]
-		public IActionResult GetShirtByColorFromQuery([FromQuery] string color)
-		{
-			return Ok($"Reading shirt with color: {color}.");
-		}
-
-		[HttpGet("headerColor")]
-		public IActionResult GetShirtByColorFromHeader([FromHeader(Name = "Color")] string color)
-		{
-			return Ok($"Reading shirt with color: {color}.");
+			return Ok(HttpContext.Items["shirt"]);
 		}
 	}
 }
