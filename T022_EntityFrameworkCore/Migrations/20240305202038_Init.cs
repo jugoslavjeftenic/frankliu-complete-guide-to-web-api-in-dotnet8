@@ -12,23 +12,6 @@ namespace T022_EntityFrameworkCore.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Shirts",
-                columns: table => new
-                {
-                    ShirtId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shirts", x => x.ShirtId);
-                });
-
             migrationBuilder.InsertData(
                 table: "Shirts",
                 columns: new[] { "ShirtId", "Brand", "Color", "Gender", "Price", "Size" },
@@ -44,8 +27,25 @@ namespace T022_EntityFrameworkCore.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Shirts");
+            migrationBuilder.DeleteData(
+                table: "Shirts",
+                keyColumn: "ShirtId",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Shirts",
+                keyColumn: "ShirtId",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Shirts",
+                keyColumn: "ShirtId",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Shirts",
+                keyColumn: "ShirtId",
+                keyValue: 4);
         }
     }
 }

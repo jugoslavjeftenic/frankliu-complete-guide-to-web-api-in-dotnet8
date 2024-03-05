@@ -12,7 +12,7 @@ using T022_EntityFrameworkCore.Data;
 namespace T022_EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240305191831_Init")]
+    [Migration("20240305202038_Init")]
     partial class Init
     {
         /// <inheritdoc />
