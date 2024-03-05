@@ -3,7 +3,7 @@ using T022_EntityFrameworkCore.Models;
 
 namespace T022_EntityFrameworkCore.Data
 {
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 	{
 		public DbSet<ShirtModel> Shirts { get; set; }
 

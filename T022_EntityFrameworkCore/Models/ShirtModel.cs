@@ -5,7 +5,7 @@ namespace T022_EntityFrameworkCore.Models
 {
 	public class ShirtModel
 	{
-		public int ShirtId { get; set; }
+		[Key] public int ShirtId { get; set; }
 
 		[Required]
 		public string Brand { get; set; } = String.Empty;
