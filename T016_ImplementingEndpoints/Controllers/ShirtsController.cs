@@ -10,14 +10,9 @@ namespace T016_ImplementingEndpoints.Controllers
 	public class ShirtsController : ControllerBase
 	{
 		[HttpPost]
+		[Shirt_ValidateCreateShirtFilter]
 		public IActionResult CreateShirt(ShirtModel shirt)
 		{
-			if (shirt is null) return BadRequest();
-
-			var existingShirt =
-				ShirtRepository.GetShirtByProperties(shirt.Brand, shirt.Gender, shirt.Color, shirt.Size);
-			if (existingShirt is not null) return BadRequest();
-
 			ShirtRepository.AddShirt(shirt);
 
 			return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId }, shirt);
