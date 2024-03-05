@@ -9,6 +9,7 @@ namespace T016_ImplementingEndpoints.Controllers
 	[Route("api/v1/[controller]")]
 	public class ShirtsController : ControllerBase
 	{
+		// Create
 		[HttpPost]
 		[Shirt_ValidateCreateShirtFilter]
 		public IActionResult CreateShirt(ShirtModel shirt)
@@ -18,10 +19,30 @@ namespace T016_ImplementingEndpoints.Controllers
 			return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId }, shirt);
 		}
 
+		// Read
 		[HttpGet]
 		public IActionResult GetShirts()
 		{
 			return Ok(ShirtRepository.GetShirts());
+		}
+
+		// Update
+		[HttpPut("{id}")]
+		[Shirt_ValidateShirtIdFilter]
+		[Shirt_ValidateUpdateShirtFilter]
+		public IActionResult UpdateShirt(int id, ShirtModel shirt)
+		{
+			try
+			{
+				ShirtRepository.EditShirt(shirt);
+			}
+			catch (Exception)
+			{
+				if (ShirtRepository.ShirtExists(id) is not true) return NotFound();
+				throw;
+			}
+
+			return NoContent();
 		}
 
 		[HttpGet("{id}")]
@@ -48,13 +69,6 @@ namespace T016_ImplementingEndpoints.Controllers
 		{
 			return Ok($"Reading shirt with color: {color}.");
 		}
-
-		[HttpPut("{id}")]
-		public IActionResult UpdateShirt(int id, [FromForm] ShirtModel shirt)
-		{
-			return Ok($"Updating shirt with id: {id} ({shirt.Brand}, {shirt.Color}).");
-		}
-
 		[HttpDelete("{id}")]
 		public IActionResult DeleteShirt(int id)
 		{

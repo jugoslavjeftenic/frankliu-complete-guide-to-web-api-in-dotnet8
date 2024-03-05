@@ -29,6 +29,17 @@
 			return _shirts;
 		}
 
+		// Update
+		public static void EditShirt(ShirtModel shirt)
+		{
+			var shirtToUpdate = _shirts.First(x => x.ShirtId.Equals(shirt.ShirtId));
+			shirtToUpdate.Brand = shirt.Brand;
+			shirtToUpdate.Price = shirt.Price;
+			shirtToUpdate.Size = shirt.Size;
+			shirtToUpdate.Color = shirt.Color;
+			shirtToUpdate.Gender = shirt.Gender;
+		}
+
 		// ReadById
 		public static ShirtModel? GetShirtById(int id)
 		{
