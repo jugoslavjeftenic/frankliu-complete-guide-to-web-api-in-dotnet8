@@ -1,6 +1,0 @@
-@T03_ImplementingEndpoints_HostAddress = http://localhost:5275
-
-GET {{T03_ImplementingEndpoints_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

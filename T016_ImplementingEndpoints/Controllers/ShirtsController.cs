@@ -39,6 +39,18 @@ namespace T016_ImplementingEndpoints.Controllers
 			return NoContent();
 		}
 
+		// Delete
+		[HttpDelete("{id}")]
+		[Shirt_ValidateShirtIdFilter]
+		public IActionResult DeleteShirt(int id)
+		{
+			var shirt = ShirtRepository.GetShirtById(id);
+			ShirtRepository.DeleteShirt(id);
+
+			return Ok(shirt);
+		}
+
+		// ReadById
 		[HttpGet("{id}")]
 		[Shirt_ValidateShirtIdFilter]
 		public IActionResult GetShirtById(int id)
@@ -62,11 +74,6 @@ namespace T016_ImplementingEndpoints.Controllers
 		public IActionResult GetShirtByColorFromHeader([FromHeader(Name = "Color")] string color)
 		{
 			return Ok($"Reading shirt with color: {color}.");
-		}
-		[HttpDelete("{id}")]
-		public IActionResult DeleteShirt(int id)
-		{
-			return Ok($"Deleting shirt with id: {id}.");
 		}
 	}
 }

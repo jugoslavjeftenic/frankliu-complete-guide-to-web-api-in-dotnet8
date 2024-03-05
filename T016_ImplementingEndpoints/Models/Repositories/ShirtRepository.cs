@@ -40,6 +40,16 @@
 			shirtToUpdate.Gender = shirt.Gender;
 		}
 
+		// Delete
+		public static void DeleteShirt(int id)
+		{
+			var shirt = GetShirtById(id);
+			if (shirt is not null)
+			{
+				_shirts.Remove(shirt);
+			}
+		}
+
 		// ReadById
 		public static ShirtModel? GetShirtById(int id)
 		{
