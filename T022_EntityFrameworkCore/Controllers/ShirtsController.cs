@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using T022_EntityFrameworkCore.Data;
 using T022_EntityFrameworkCore.Filters.ActionFilters;
 using T022_EntityFrameworkCore.Filters.ExceptionFilters;
 using T022_EntityFrameworkCore.Models;
@@ -8,8 +9,10 @@ namespace T022_EntityFrameworkCore.Controllers
 {
 	[ApiController]
 	[Route("api/v1/[controller]")]
-	public class ShirtsController : ControllerBase
+	public class ShirtsController(ApplicationDbContext db) : ControllerBase
 	{
+		private readonly ApplicationDbContext _db = db;
+
 		// Create
 		[HttpPost]
 		[Shirt_ValidateCreateShirtFilter]
@@ -24,7 +27,7 @@ namespace T022_EntityFrameworkCore.Controllers
 		[HttpGet]
 		public IActionResult GetShirts()
 		{
-			return Ok(ShirtRepository.GetShirts());
+			return Ok(_db.Shirts.ToList());
 		}
 
 		// Update
