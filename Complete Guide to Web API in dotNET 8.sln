@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T008_WebApiControllers", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T016_ImplementingEndpoints", "T016_ImplementingEndpoints\T016_ImplementingEndpoints.csproj", "{EB3E5DD3-6DC6-450A-9011-F239A6CC1B03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T022_EntityFrameworkCore", "T022_EntityFrameworkCore\T022_EntityFrameworkCore.csproj", "{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EB3E5DD3-6DC6-450A-9011-F239A6CC1B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3E5DD3-6DC6-450A-9011-F239A6CC1B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3E5DD3-6DC6-450A-9011-F239A6CC1B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
