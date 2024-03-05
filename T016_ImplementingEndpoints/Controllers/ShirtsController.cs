@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using T016_ImplementingEndpoints.Filters.ActionFilters;
+using T016_ImplementingEndpoints.Filters.ExceptionFilters;
 using T016_ImplementingEndpoints.Models;
 using T016_ImplementingEndpoints.Models.Repositories;
 
@@ -30,17 +31,10 @@ namespace T016_ImplementingEndpoints.Controllers
 		[HttpPut("{id}")]
 		[Shirt_ValidateShirtIdFilter]
 		[Shirt_ValidateUpdateShirtFilter]
+		[Shirt_HandleUpdateExceptionsFilter]
 		public IActionResult UpdateShirt(int id, ShirtModel shirt)
 		{
-			try
-			{
-				ShirtRepository.EditShirt(shirt);
-			}
-			catch (Exception)
-			{
-				if (ShirtRepository.ShirtExists(id) is not true) return NotFound();
-				throw;
-			}
+			ShirtRepository.EditShirt(shirt);
 
 			return NoContent();
 		}
