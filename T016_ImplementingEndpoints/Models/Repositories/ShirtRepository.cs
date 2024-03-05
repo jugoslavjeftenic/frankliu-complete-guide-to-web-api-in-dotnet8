@@ -14,19 +14,49 @@
 				Price = 30, Size = 9 }
 		];
 
+		// Create
+		public static void AddShirt(ShirtModel shirt)
+		{
+			int maxId = _shirts.Max(x => x.ShirtId);
+			shirt.ShirtId = ++maxId;
+
+			_shirts.Add(shirt);
+		}
+
+		// Read
 		public static List<ShirtModel> GetShirts()
 		{
 			return _shirts;
 		}
 
-		public static bool ShirtExists(int id)
-		{
-			return _shirts.Any(x => x.ShirtId.Equals(id));
-		}
-
+		// ReadById
 		public static ShirtModel? GetShirtById(int id)
 		{
 			return _shirts.FirstOrDefault(x => x.ShirtId.Equals(id));
+		}
+
+		// ReadByProperties
+		public static ShirtModel? GetShirtByProperties(string brand, string gender, string color, int size)
+		{
+			return _shirts.FirstOrDefault(
+				x =>
+					string.IsNullOrWhiteSpace(brand) is not true
+					&& string.IsNullOrWhiteSpace(x.Brand) is not true
+					&& x.Brand.Equals(brand, StringComparison.OrdinalIgnoreCase)
+					&& string.IsNullOrWhiteSpace(gender) is not true
+					&& string.IsNullOrWhiteSpace(x.Gender) is not true
+					&& x.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase)
+					&& string.IsNullOrWhiteSpace(color) is not true
+					&& string.IsNullOrWhiteSpace(x.Color) is not true
+					&& x.Color.Equals(color, StringComparison.OrdinalIgnoreCase)
+					&& x.Size.Equals(size)
+				);
+		}
+
+		// ShirtExists
+		public static bool ShirtExists(int id)
+		{
+			return _shirts.Any(x => x.ShirtId.Equals(id));
 		}
 	}
 }

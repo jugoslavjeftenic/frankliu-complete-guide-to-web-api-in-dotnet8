@@ -9,6 +9,20 @@ namespace T016_ImplementingEndpoints.Controllers
 	[Route("api/v1/[controller]")]
 	public class ShirtsController : ControllerBase
 	{
+		[HttpPost]
+		public IActionResult CreateShirt(ShirtModel shirt)
+		{
+			if (shirt is null) return BadRequest();
+
+			var existingShirt =
+				ShirtRepository.GetShirtByProperties(shirt.Brand, shirt.Gender, shirt.Color, shirt.Size);
+			if (existingShirt is not null) return BadRequest();
+
+			ShirtRepository.AddShirt(shirt);
+
+			return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId }, shirt);
+		}
+
 		[HttpGet]
 		public IActionResult GetShirts()
 		{
@@ -38,12 +52,6 @@ namespace T016_ImplementingEndpoints.Controllers
 		public IActionResult GetShirtByColorFromHeader([FromHeader(Name = "Color")] string color)
 		{
 			return Ok($"Reading shirt with color: {color}.");
-		}
-
-		[HttpPost]
-		public IActionResult CreateShirt([FromBody] ShirtModel shirt)
-		{
-			return Ok($"Creating a shirt ({shirt.Brand}, {shirt.Color}).");
 		}
 
 		[HttpPut("{id}")]
