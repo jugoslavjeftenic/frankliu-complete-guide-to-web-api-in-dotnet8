@@ -34,11 +34,18 @@ namespace T022_EntityFrameworkCore.Controllers
 		// Update
 		[HttpPut("{id}")]
 		[TypeFilter(typeof(Shirt_ValidateShirtIdFilterAttribute))]
-		[Shirt_ValidateUpdateShirtFilter]
-		[Shirt_HandleUpdateExceptionsFilter]
+		[TypeFilter(typeof(Shirt_ValidateUpdateShirtFilterAttribute))]
+		[TypeFilter(typeof(Shirt_HandleUpdateExceptionsFilterAttribute))]
 		public IActionResult UpdateShirt(int id, ShirtModel shirt)
 		{
-			ShirtRepository.EditShirt(shirt);
+			var shirtToUpdate = HttpContext.Items["shirt"] as ShirtModel;
+			shirtToUpdate!.Brand = shirt.Brand;
+			shirtToUpdate.Price = shirt.Price;
+			shirtToUpdate.Size = shirt.Size;
+			shirtToUpdate.Color = shirt.Color;
+			shirtToUpdate.Gender = shirt.Gender;
+
+			_db.SaveChanges();
 
 			return NoContent();
 		}

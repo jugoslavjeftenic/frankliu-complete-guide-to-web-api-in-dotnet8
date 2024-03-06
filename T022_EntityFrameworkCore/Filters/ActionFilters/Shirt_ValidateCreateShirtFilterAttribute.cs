@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Drawing;
-using System.Reflection;
 using T022_EntityFrameworkCore.Data;
 using T022_EntityFrameworkCore.Models;
-using T022_EntityFrameworkCore.Models.Repositories;
 
 namespace T022_EntityFrameworkCore.Filters.ActionFilters
 {
