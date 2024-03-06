@@ -15,10 +15,11 @@ namespace T022_EntityFrameworkCore.Controllers
 
 		// Create
 		[HttpPost]
-		[Shirt_ValidateCreateShirtFilter]
+		[TypeFilter(typeof(Shirt_ValidateCreateShirtFilterAttribute))]
 		public IActionResult CreateShirt(ShirtModel shirt)
 		{
-			ShirtRepository.AddShirt(shirt);
+			_db.Shirts.Add(shirt);
+			_db.SaveChanges();
 
 			return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId }, shirt);
 		}
