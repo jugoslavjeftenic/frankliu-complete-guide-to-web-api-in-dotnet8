@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T04_EntityFrameworkCore", "T04_EntityFrameworkCore\T04_EntityFrameworkCore.csproj", "{61F63237-1C53-4BC4-A67E-0A32A3A470CC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T05_MVCProject", "T05_MVCProject\T05_MVCProject.csproj", "{24037037-A230-4065-912B-3F7264419A6C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T004_MinimalApiDemo", "T004_MinimalApiDemo\T004_MinimalApiDemo.csproj", "{92D78FE3-9A88-4436-80D3-DBB253AC27F1}"
@@ -13,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T008_WebApiControllers", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T016_ImplementingEndpoints", "T016_ImplementingEndpoints\T016_ImplementingEndpoints.csproj", "{EB3E5DD3-6DC6-450A-9011-F239A6CC1B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T022_EntityFrameworkCore", "T022_EntityFrameworkCore\T022_EntityFrameworkCore.csproj", "{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T022_EntityFrameworkCore", "T022_EntityFrameworkCore\T022_EntityFrameworkCore.csproj", "{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61F63237-1C53-4BC4-A67E-0A32A3A470CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24037037-A230-4065-912B-3F7264419A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -55,10 +55,11 @@ namespace T022_EntityFrameworkCore.Controllers
 		[TypeFilter(typeof(Shirt_ValidateShirtIdFilterAttribute))]
 		public IActionResult DeleteShirt(int id)
 		{
-			var shirt = ShirtRepository.GetShirtById(id);
-			ShirtRepository.DeleteShirt(id);
+			var shirtToDelete = HttpContext.Items["shirt"] as ShirtModel;
+			_db.Shirts.Remove(shirtToDelete!);
+			_db.SaveChanges();
 
-			return Ok(shirt);
+			return Ok(shirtToDelete);
 		}
 
 		// ReadById

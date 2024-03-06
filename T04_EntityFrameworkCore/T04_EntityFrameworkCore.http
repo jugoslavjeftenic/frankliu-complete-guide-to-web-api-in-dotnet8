@@ -1,6 +1,0 @@
-@T04_EntityFrameworkCore_HostAddress = http://localhost:5038
-
-GET {{T04_EntityFrameworkCore_HostAddress}}/api/v1/shirts/
-Accept: application/json
-
-###
