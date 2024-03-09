@@ -10,8 +10,18 @@ namespace T031_MVCProject.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			return View(await _webApiExecutor.InvokeGet<List<ShirtModel>>("https://localhost:7294/api/v1/shirts"));
-			//return View(await _webApiExecutor.InvokeGet<List<ShirtModel>>("shirts"));
+			return View(await _webApiExecutor.InvokeGet<List<ShirtModel>>("shirts"));
+		}
+
+		public IActionResult CreateShirt()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> CreateShirt(ShirtModel shirt)
+		{
+			return View(shirt);
 		}
 	}
 }

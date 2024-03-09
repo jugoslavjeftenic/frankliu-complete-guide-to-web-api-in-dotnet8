@@ -13,7 +13,7 @@
 			<td>Price</td>
 		</tr>
 	</thead>
- 	<tbody>
+	<tbody>
 		@foreach (var shirt in Model)
 		{
 			<tr>
@@ -26,3 +26,7 @@
 		}
 	</tbody>
 </table>
+<br />
+
+<a class="btn btn-primary" asp-controller="shirts" asp-action="createshirt">Create</a>
+

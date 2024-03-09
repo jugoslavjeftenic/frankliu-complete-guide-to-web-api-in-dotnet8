@@ -1,0 +1,53 @@
+﻿@model ShirtModel
+
+<h3>Shirt</h3>
+<br />
+
+<form method="post" asp-action="CreateShirt">
+	<div class="mb-3 row">
+		<div class="col-2">
+			<label class="col-form-label" asp-for="Brand"></label>
+		</div>
+		<div class="col-6">
+			<input class="form-control" asp-for="Brand" type="text" />
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<div class="col-2">
+			<label class="col-form-label" asp-for="Gender"></label>
+		</div>
+		<div class="col-6">
+			<input class="form-control" asp-for="Gender" type="text" />
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<div class="col-2">
+			<label class="col-form-label" asp-for="Color"></label>
+		</div>
+		<div class="col-6">
+			<input class="form-control" asp-for="Color" type="text" />
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<div class="col-2">
+			<label class="col-form-label" asp-for="Size"></label>
+		</div>
+		<div class="col-6">
+			<input class="form-control" asp-for="Size" type="number" min="1" />
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<div class="col-2">
+			<label class="col-form-label" asp-for="Price"></label>
+		</div>
+		<div class="col-6">
+			<input class="form-control" asp-for="Price" type="number" />
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<div class="col-2">
+			<input class="btn btn-primary" type="submit" value="Submit" />
+		</div>
+		<div class="col-6"></div>
+	</div>
+</form>

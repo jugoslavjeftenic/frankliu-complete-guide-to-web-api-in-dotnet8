@@ -3,7 +3,7 @@ using T031_MVCProject.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient("ShirtApi", client =>
+builder.Services.AddHttpClient("ShirtsApi", client =>
 {
 	client.BaseAddress = new Uri("https://localhost:7294/api/v1/");
 	client.DefaultRequestHeaders.Add("Accept", "application/json");
