@@ -3,7 +3,7 @@ using T031_MVCProject.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient("ShirtPai", client =>
+builder.Services.AddHttpClient("ShirtApi", client =>
 {
 	client.BaseAddress = new Uri("https://localhost:7294/api/v1/");
 	client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -11,7 +11,7 @@ builder.Services.AddHttpClient("ShirtPai", client =>
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<IWebApiExecutor, IWebApiExecutor>();
+builder.Services.AddTransient<IWebApiExecutor, WebApiExecutor>();
 
 var app = builder.Build();
 
