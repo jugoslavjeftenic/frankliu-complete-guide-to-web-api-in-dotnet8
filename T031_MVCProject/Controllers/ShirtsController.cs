@@ -43,5 +43,17 @@ namespace T031_MVCProject.Controllers
 
 			return NotFound();
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> UpdateShirt(ShirtModel shirt)
+		{
+			if (ModelState.IsValid)
+			{
+				await _webApiExecutor.InvokePut($"shirts/{shirt.ShirtId}", shirt);
+				return RedirectToAction(nameof(Index));
+			}
+
+			return View(shirt);
+		}
 	}
 }
