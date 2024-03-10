@@ -10,7 +10,7 @@ namespace T031_MVCProject.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			return View(await _webApiExecutor.InvokeGet<List<ShirtModel>>("shirts"));
+			return View(await _webApiExecutor.InvokeGet<List<ShirtModel>>("Shirts"));
 		}
 
 		public IActionResult CreateShirt()
@@ -21,6 +21,15 @@ namespace T031_MVCProject.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateShirt(ShirtModel shirt)
 		{
+			if (ModelState.IsValid)
+			{
+				var response = await _webApiExecutor.InvokePost("Shirts", shirt);
+				if (response is not null)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+			}
+
 			return View(shirt);
 		}
 	}
