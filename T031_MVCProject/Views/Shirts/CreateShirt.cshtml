@@ -4,12 +4,16 @@
 <br />
 
 <form method="post" asp-action="CreateShirt">
+	<div class="text-danger" asp-validation-summary="ModelOnly"></div>
 	<div class="mb-3 row">
 		<div class="col-2">
 			<label class="col-form-label" asp-for="Brand"></label>
 		</div>
 		<div class="col-6">
 			<input class="form-control" asp-for="Brand" type="text" />
+		</div>
+		<div class="col">
+			<span class="text-danger" asp-validation-for="Brand"></span>
 		</div>
 	</div>
 	<div class="mb-3 row">
@@ -19,6 +23,9 @@
 		<div class="col-6">
 			<input class="form-control" asp-for="Gender" type="text" />
 		</div>
+		<div class="col">
+			<span class="text-danger" asp-validation-for="Gender"></span>
+		</div>
 	</div>
 	<div class="mb-3 row">
 		<div class="col-2">
@@ -26,6 +33,9 @@
 		</div>
 		<div class="col-6">
 			<input class="form-control" asp-for="Color" type="text" />
+		</div>
+		<div class="col">
+			<span class="text-danger" asp-validation-for="Color"></span>
 		</div>
 	</div>
 	<div class="mb-3 row">
@@ -35,6 +45,9 @@
 		<div class="col-6">
 			<input class="form-control" asp-for="Size" type="number" min="1" />
 		</div>
+		<div class="col">
+			<span class="text-danger" asp-validation-for="Size"></span>
+		</div>
 	</div>
 	<div class="mb-3 row">
 		<div class="col-2">
@@ -42,6 +55,9 @@
 		</div>
 		<div class="col-6">
 			<input class="form-control" asp-for="Price" type="number" />
+		</div>
+		<div class="col">
+			<span class="text-danger" asp-validation-for="Price"></span>
 		</div>
 	</div>
 	<div class="mb-3 row">
