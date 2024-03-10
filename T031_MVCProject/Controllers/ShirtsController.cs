@@ -55,5 +55,11 @@ namespace T031_MVCProject.Controllers
 
 			return View(shirt);
 		}
+
+		public async Task<IActionResult> DeleteShirt(int shirtId)
+		{
+			await _webApiExecutor.InvokeDelete($"shirts/{shirtId}");
+			return RedirectToAction(nameof(Index));
+		}
 	}
 }
