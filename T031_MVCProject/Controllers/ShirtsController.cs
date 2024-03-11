@@ -80,8 +80,16 @@ namespace T031_MVCProject.Controllers
 
 		public async Task<IActionResult> DeleteShirt(int shirtId)
 		{
-			await _webApiExecutor.InvokeDelete($"shirts/{shirtId}");
-			return RedirectToAction(nameof(Index));
+			try
+			{
+				await _webApiExecutor.InvokeDelete($"shirts/{shirtId}");
+				return RedirectToAction(nameof(Index));
+			}
+			catch (WebApiException ex)
+			{
+				HandleWebApiException(ex);
+				return View(nameof(Index), await _webApiExecutor.InvokeGet<List<ShirtModel>>("shirts"));
+			}
 		}
 
 		private void HandleWebApiException(WebApiException ex)
