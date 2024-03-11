@@ -23,10 +23,25 @@ namespace T031_MVCProject.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var response = await _webApiExecutor.InvokePost("shirts", shirt);
-				if (response is not null)
+				try
 				{
-					return RedirectToAction(nameof(Index));
+					var response = await _webApiExecutor.InvokePost("shirts", shirt);
+					if (response is not null)
+					{
+						return RedirectToAction(nameof(Index));
+					}
+				}
+				catch (WebApiException ex)
+				{
+					if (ex.ErrorResponse is not null &&
+						ex.ErrorResponse.Errors is not null &&
+						ex.ErrorResponse.Errors.Count > 0)
+					{
+						foreach (var error in ex.ErrorResponse.Errors)
+						{
+							ModelState.AddModelError(error.Key, string.Join("; ", error.Value));
+						}
+					}
 				}
 			}
 
