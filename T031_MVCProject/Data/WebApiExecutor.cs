@@ -1,4 +1,6 @@
-﻿namespace T031_MVCProject.Data
+﻿using System.Text.Json;
+
+namespace T031_MVCProject.Data
 {
 	public class WebApiExecutor(IHttpClientFactory httpClientFactory) : IWebApiExecutor
 	{
@@ -8,7 +10,12 @@
 		public async Task<T?> InvokeGet<T>(string relativeUrl)
 		{
 			var httpClient = _httpClientFactory.CreateClient(_apiName);
-			return await httpClient.GetFromJsonAsync<T>(relativeUrl);
+
+			var request = new HttpRequestMessage(HttpMethod.Get, relativeUrl);
+			var response = await httpClient.SendAsync(request);
+			await HandlePotentialError(response);
+
+			return await response.Content.ReadFromJsonAsync<T>();
 		}
 
 		public async Task<T?> InvokePost<T>(string relativeUrl, T obj)
@@ -16,7 +23,7 @@
 			var httpClient = _httpClientFactory.CreateClient(_apiName);
 
 			var response = await httpClient.PostAsJsonAsync(relativeUrl, obj);
-			response.EnsureSuccessStatusCode();
+			await HandlePotentialError(response);
 
 			return await response.Content.ReadFromJsonAsync<T>();
 		}
@@ -26,7 +33,7 @@
 			var httpClient = _httpClientFactory.CreateClient(_apiName);
 
 			var response = await httpClient.PutAsJsonAsync(relativeUrl, obj);
-			response.EnsureSuccessStatusCode();
+			await HandlePotentialError(response);
 		}
 
 		public async Task InvokeDelete(string relativeUrl)
@@ -34,7 +41,16 @@
 			var httpClient = _httpClientFactory.CreateClient(_apiName);
 
 			var response = await httpClient.DeleteAsync(relativeUrl);
-			response.EnsureSuccessStatusCode();
+			await HandlePotentialError(response);
+		}
+
+		private async Task HandlePotentialError(HttpResponseMessage httpResponse)
+		{
+			if (httpResponse.IsSuccessStatusCode is not true)
+			{
+				var errorJson = await httpResponse.Content.ReadAsStringAsync();
+				throw new WebApiException(errorJson);
+			}
 		}
 	}
 }
