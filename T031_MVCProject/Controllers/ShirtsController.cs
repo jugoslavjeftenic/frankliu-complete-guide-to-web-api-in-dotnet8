@@ -33,15 +33,7 @@ namespace T031_MVCProject.Controllers
 				}
 				catch (WebApiException ex)
 				{
-					if (ex.ErrorResponse is not null &&
-						ex.ErrorResponse.Errors is not null &&
-						ex.ErrorResponse.Errors.Count > 0)
-					{
-						foreach (var error in ex.ErrorResponse.Errors)
-						{
-							ModelState.AddModelError(error.Key, string.Join("; ", error.Value));
-						}
-					}
+					HandleWebApiException(ex);
 				}
 			}
 
@@ -50,10 +42,18 @@ namespace T031_MVCProject.Controllers
 
 		public async Task<IActionResult> UpdateShirt(int shirtId)
 		{
-			var shirt = await _webApiExecutor.InvokeGet<ShirtModel>($"shirts/{shirtId}");
-			if (shirt is not null)
+			try
 			{
-				return View(shirt);
+				var shirt = await _webApiExecutor.InvokeGet<ShirtModel>($"shirts/{shirtId}");
+				if (shirt is not null)
+				{
+					return View(shirt);
+				}
+			}
+			catch (WebApiException ex)
+			{
+				HandleWebApiException(ex);
+				return View();
 			}
 
 			return NotFound();
@@ -62,10 +62,17 @@ namespace T031_MVCProject.Controllers
 		[HttpPost]
 		public async Task<IActionResult> UpdateShirt(ShirtModel shirt)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				await _webApiExecutor.InvokePut($"shirts/{shirt.ShirtId}", shirt);
-				return RedirectToAction(nameof(Index));
+				if (ModelState.IsValid)
+				{
+					await _webApiExecutor.InvokePut($"shirts/{shirt.ShirtId}", shirt);
+					return RedirectToAction(nameof(Index));
+				}
+			}
+			catch (WebApiException ex)
+			{
+				HandleWebApiException(ex);
 			}
 
 			return View(shirt);
@@ -75,6 +82,19 @@ namespace T031_MVCProject.Controllers
 		{
 			await _webApiExecutor.InvokeDelete($"shirts/{shirtId}");
 			return RedirectToAction(nameof(Index));
+		}
+
+		private void HandleWebApiException(WebApiException ex)
+		{
+			if (ex.ErrorResponse is not null &&
+				ex.ErrorResponse.Errors is not null &&
+				ex.ErrorResponse.Errors.Count > 0)
+			{
+				foreach (var error in ex.ErrorResponse.Errors)
+				{
+					ModelState.AddModelError(error.Key, string.Join("; ", error.Value));
+				}
+			}
 		}
 	}
 }
