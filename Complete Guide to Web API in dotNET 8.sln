@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T05_MVCProject", "T05_MVCProject\T05_MVCProject.csproj", "{24037037-A230-4065-912B-3F7264419A6C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T004_MinimalApiDemo", "T004_MinimalApiDemo\T004_MinimalApiDemo.csproj", "{92D78FE3-9A88-4436-80D3-DBB253AC27F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T008_WebApiControllers", "T008_WebApiControllers\T008_WebApiControllers.csproj", "{CDB5CBC2-E8DD-4163-AEBD-8BCD4B47A5BB}"
@@ -13,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T016_ImplementingEndpoints"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T022_EntityFrameworkCore", "T022_EntityFrameworkCore\T022_EntityFrameworkCore.csproj", "{EF0A5B92-C03A-4939-9BAD-E0B13E3639AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T031_MVCProject", "T031_MVCProject\T031_MVCProject.csproj", "{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T031_MVCProject", "T031_MVCProject\T031_MVCProject.csproj", "{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T045_WebApiSecurity", "T045_WebApiSecurity\T045_WebApiSecurity.csproj", "{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24037037-A230-4065-912B-3F7264419A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24037037-A230-4065-912B-3F7264419A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24037037-A230-4065-912B-3F7264419A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92D78FE3-9A88-4436-80D3-DBB253AC27F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92D78FE3-9A88-4436-80D3-DBB253AC27F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92D78FE3-9A88-4436-80D3-DBB253AC27F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
