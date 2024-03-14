@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using T045_WebApiSecurity.Data;
 using T045_WebApiSecurity.Filters.ActionFilters;
+using T045_WebApiSecurity.Filters.AuthFilters;
 using T045_WebApiSecurity.Filters.ExceptionFilters;
 using T045_WebApiSecurity.Models;
 
@@ -8,6 +9,7 @@ namespace T045_WebApiSecurity.Controllers
 {
 	[ApiController]
 	[Route("api/v1/[controller]")]
+	[JwtAuthFilter]
 	public class ShirtsController(ApplicationDbContext db) : ControllerBase
 	{
 		private readonly ApplicationDbContext _db = db;

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -18,9 +17,6 @@ namespace T045_WebApiSecurity.Authority
 
 		public static string CreateToken(string clientId, DateTime expiresAt, string SecretKeyString)
 		{
-			// Algorithm
-			// Payload (claims)
-			// Signing Key
 			var secretKey = Encoding.ASCII.GetBytes(SecretKeyString);
 
 			var app = AppRepository.GetApplicationByClientId(clientId);
@@ -41,6 +37,40 @@ namespace T045_WebApiSecurity.Authority
 				);
 
 			return new JwtSecurityTokenHandler().WriteToken(jwt);
+		}
+
+		public static bool VerifyToken(string? token, string SecretKeyString)
+		{
+			if (string.IsNullOrWhiteSpace(token)) return false;
+
+			var secretKey = Encoding.ASCII.GetBytes(SecretKeyString);
+
+			SecurityToken securityToken;
+
+			try
+			{
+				var tokenHandler = new JwtSecurityTokenHandler();
+				tokenHandler.ValidateToken(token, new TokenValidationParameters
+				{
+					ValidateIssuerSigningKey = true,
+					IssuerSigningKey = new SymmetricSecurityKey(secretKey),
+					ValidateLifetime = true,
+					ValidateAudience = false,
+					ValidateIssuer = false,
+					ClockSkew = TimeSpan.Zero
+				},
+				out securityToken);
+			}
+			catch (SecurityTokenException)
+			{
+				return false;
+			}
+			catch
+			{
+				throw;
+			}
+
+			return securityToken is not null;
 		}
 	}
 }

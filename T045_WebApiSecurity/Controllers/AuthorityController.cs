@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using T045_WebApiSecurity.Authority;
 
 namespace T045_WebApiSecurity.Controllers
@@ -17,7 +13,7 @@ namespace T045_WebApiSecurity.Controllers
 		{
 			if (Authenticator.Authenticate(credential.ClientId, credential.Secret))
 			{
-				var expiresAt = DateTime.UtcNow.AddMinutes(10);
+				var expiresAt = DateTime.UtcNow.AddDays(1);
 				return Ok(new
 				{
 					acces_token = Authenticator.CreateToken(
