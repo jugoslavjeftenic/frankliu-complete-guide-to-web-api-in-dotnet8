@@ -4,6 +4,7 @@ using T045_WebApiSecurity.Authority;
 
 namespace T045_WebApiSecurity.Filters.AuthFilters
 {
+	[AttributeUsage(AttributeTargets.All)]
 	public class JwtAuthFilterAttribute : Attribute, IAsyncAuthorizationFilter
 	{
 		public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -15,9 +16,15 @@ namespace T045_WebApiSecurity.Filters.AuthFilters
 			}
 
 			var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
+			var secretKey = configuration?.GetValue<string>("SecretKey");
 
+			if (string.IsNullOrEmpty(secretKey))
+			{
+				context.Result = new UnauthorizedResult();
+				return;
+			}
 
-			if (Authenticator.VerifyToken(token, configuration.GetValue<string>("SecretKey")) is not true)
+			if (!await Task.Run(() => Authenticator.VerifyToken(token, secretKey)))
 			{
 				context.Result = new UnauthorizedResult();
 			}
