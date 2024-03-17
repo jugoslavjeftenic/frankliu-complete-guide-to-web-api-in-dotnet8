@@ -20,12 +20,19 @@ namespace T045_WebApiSecurity.Authority
 			var secretKey = Encoding.ASCII.GetBytes(SecretKeyString);
 
 			var app = AppRepository.GetApplicationByClientId(clientId);
-			var claims = new List<Claim>()
+			var claims = new List<Claim>
 			{
 				new("AppName", app?.ApplicationName ?? string.Empty),
-				new("Read", (app?.Scopes ?? string.Empty).Contains("read") ? "true" : "false"),
-				new("Write", (app?.Scopes ?? string.Empty).Contains("write") ? "true" : "false")
 			};
+
+			var scopes = app?.Scopes.Split(",");
+			if (scopes is not null && scopes.Length > 0)
+			{
+				foreach (var scope in scopes)
+				{
+					claims.Add(new Claim(scope.ToLower(), "true"));
+				}
+			}
 
 			var jwt = new JwtSecurityToken(
 				signingCredentials: new SigningCredentials(
@@ -39,17 +46,15 @@ namespace T045_WebApiSecurity.Authority
 			return new JwtSecurityTokenHandler().WriteToken(jwt);
 		}
 
-		public static bool VerifyToken(string? token, string SecretKeyString)
+		public static IEnumerable<Claim>? VerifyToken(string? token, string SecretKeyString)
 		{
-			if (string.IsNullOrWhiteSpace(token)) return false;
+			if (string.IsNullOrWhiteSpace(token)) return null;
 
 			if (token.StartsWith("Bearer"))
 			{
 				token = token[6..].Trim();
 			}
 			var secretKey = Encoding.ASCII.GetBytes(SecretKeyString);
-
-			SecurityToken securityToken;
 
 			try
 			{
@@ -63,18 +68,26 @@ namespace T045_WebApiSecurity.Authority
 					ValidateIssuer = false,
 					ClockSkew = TimeSpan.Zero
 				},
-				out securityToken);
+				out SecurityToken securityToken);
+
+				if (securityToken is not null)
+				{
+					var tokenObject = tokenHandler.ReadJwtToken(token);
+					return tokenObject.Claims ?? ([]);
+				}
+				else
+				{
+					return null;
+				}
 			}
 			catch (SecurityTokenException)
 			{
-				return false;
+				return null;
 			}
 			catch
 			{
 				throw;
 			}
-
-			return securityToken is not null;
 		}
 	}
 }

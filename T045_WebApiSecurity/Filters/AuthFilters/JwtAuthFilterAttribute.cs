@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using T045_WebApiSecurity.Attributes;
 using T045_WebApiSecurity.Authority;
 
 namespace T045_WebApiSecurity.Filters.AuthFilters
@@ -24,9 +25,29 @@ namespace T045_WebApiSecurity.Filters.AuthFilters
 				return;
 			}
 
-			if (await Task.Run(() => Authenticator.VerifyToken(token, secretKey)) is not true)
+			var claims = await Task.Run(() => Authenticator.VerifyToken(token, secretKey));
+
+			if (claims is null)
 			{
-				context.Result = new UnauthorizedResult();
+				context.Result = new UnauthorizedResult(); // 401
+			}
+			else
+			{
+				var requiredClaims = context.ActionDescriptor.EndpointMetadata
+					.OfType<RequiredClaimAttribute>()
+					.ToList();
+
+				// 403
+				if (requiredClaims is not null &&
+					requiredClaims.All(
+						rc => claims.Any(c =>
+							c.Type.ToLower().Equals(rc.ClaimType.ToLower()) &&
+							c.Value.ToLower().Equals(rc.ClaimValue.ToLower())
+						)
+					) is not true)
+				{
+					context.Result = new StatusCodeResult(403);
+				}
 			}
 		}
 	}
