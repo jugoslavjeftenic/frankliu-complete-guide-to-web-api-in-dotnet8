@@ -79,7 +79,7 @@ namespace T052_WebAppSecurity.Data
 				token = JsonSerializer.Deserialize<JwToken>(tokenString);
 			}
 
-			if (token is null)
+			if (token is null || token.ExpiresAt <= DateTime.UtcNow)
 			{
 				var clientId = _configuration.GetValue<string>("ClientId");
 				var secret = _configuration.GetValue<string>("Secret");
