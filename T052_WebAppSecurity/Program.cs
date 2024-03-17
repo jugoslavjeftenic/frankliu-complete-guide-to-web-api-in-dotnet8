@@ -16,6 +16,15 @@ builder.Services.AddHttpClient("AuthorityApi", client =>
 	client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+builder.Services.AddSession(options =>
+{
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+	options.IdleTimeout = TimeSpan.FromHours(5);
+});
+
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IWebApiExecutor, WebApiExecutor>();
@@ -36,6 +45,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
 	name: "default",
