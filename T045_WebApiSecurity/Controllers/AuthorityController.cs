@@ -16,7 +16,7 @@ namespace T045_WebApiSecurity.Controllers
 				var expiresAt = DateTime.UtcNow.AddDays(1);
 				return Ok(new
 				{
-					acces_token = Authenticator.CreateToken(
+					access_token = Authenticator.CreateToken(
 						credential.ClientId, expiresAt,
 						_configuration.GetValue<string>("SecretKey") ?? string.Empty
 						),

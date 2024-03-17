@@ -24,7 +24,7 @@ namespace T045_WebApiSecurity.Filters.AuthFilters
 				return;
 			}
 
-			if (!await Task.Run(() => Authenticator.VerifyToken(token, secretKey)))
+			if (await Task.Run(() => Authenticator.VerifyToken(token, secretKey)) is not true)
 			{
 				context.Result = new UnauthorizedResult();
 			}

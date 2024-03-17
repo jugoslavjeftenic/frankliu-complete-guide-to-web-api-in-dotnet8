@@ -43,6 +43,10 @@ namespace T045_WebApiSecurity.Authority
 		{
 			if (string.IsNullOrWhiteSpace(token)) return false;
 
+			if (token.StartsWith("Bearer"))
+			{
+				token = token[6..].Trim();
+			}
 			var secretKey = Encoding.ASCII.GetBytes(SecretKeyString);
 
 			SecurityToken securityToken;
