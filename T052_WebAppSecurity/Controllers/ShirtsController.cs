@@ -103,6 +103,14 @@ namespace T052_WebAppSecurity.Controllers
 					ModelState.AddModelError(error.Key, string.Join("; ", error.Value));
 				}
 			}
+			else if (ex.ErrorResponse is not null)
+			{
+				ModelState.AddModelError("Error", ex.ErrorResponse.Title ?? string.Empty);
+			}
+			else
+			{
+				ModelState.AddModelError("Error", ex.Message);
+			}
 		}
 	}
 }
