@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T022_EntityFrameworkCore", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T031_MVCProject", "T031_MVCProject\T031_MVCProject.csproj", "{E2B885C0-2587-47F4-BAA0-73FDAEA86F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T045_WebApiSecurity", "T045_WebApiSecurity\T045_WebApiSecurity.csproj", "{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T045_WebApiSecurity", "T045_WebApiSecurity\T045_WebApiSecurity.csproj", "{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T052_WebAppSecurity", "T052_WebAppSecurity\T052_WebAppSecurity.csproj", "{A0EC3D54-13A0-4D7C-A91D-DDEB5FEB17BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D7188A6-9ED9-47E3-87FB-56A49A2F16C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EC3D54-13A0-4D7C-A91D-DDEB5FEB17BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EC3D54-13A0-4D7C-A91D-DDEB5FEB17BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EC3D54-13A0-4D7C-A91D-DDEB5FEB17BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EC3D54-13A0-4D7C-A91D-DDEB5FEB17BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
