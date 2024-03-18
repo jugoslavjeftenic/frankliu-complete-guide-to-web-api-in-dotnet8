@@ -11,6 +11,8 @@ namespace T056_WebApiSwagger.Models
 		[Required]
 		public string Brand { get; set; } = String.Empty;
 
+		public string Description { get; set; } = String.Empty;
+
 		[Required]
 		public string Color { get; set; } = String.Empty;
 
@@ -21,5 +23,10 @@ namespace T056_WebApiSwagger.Models
 		public string Gender { get; set; } = String.Empty;
 
 		public double? Price { get; set; }
+
+		public bool ValidateDescription()
+		{
+			return string.IsNullOrEmpty(Description) is false;
+		}
 	}
 }
