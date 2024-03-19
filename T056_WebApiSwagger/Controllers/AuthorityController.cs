@@ -4,7 +4,7 @@ using T056_WebApiSwagger.Authority;
 
 namespace T056_WebApiSwagger.Controllers
 {
-	[ApiVersion(1)]
+	[ApiVersion(1.0)]
 	[ApiController]
 	public class AuthorityController(IConfiguration configuration) : ControllerBase
 	{

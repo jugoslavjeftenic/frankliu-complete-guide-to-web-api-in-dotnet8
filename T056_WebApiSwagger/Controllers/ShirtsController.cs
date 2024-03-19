@@ -9,9 +9,9 @@ using T056_WebApiSwagger.Models;
 
 namespace T056_WebApiSwagger.Controllers
 {
-	[ApiVersion(1)]
+	[ApiVersion(1.0)]
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("api/v{v:apiVersion}/[controller]")]
 	[JwtAuthFilter]
 	public class ShirtsController(ApplicationDbContext db) : ControllerBase
 	{
