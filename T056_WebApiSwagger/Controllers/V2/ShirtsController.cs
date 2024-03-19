@@ -55,6 +55,7 @@ namespace T056_WebApiSwagger.Controllers.V2
 			shirtToUpdate.Size = shirt.Size;
 			shirtToUpdate.Color = shirt.Color;
 			shirtToUpdate.Gender = shirt.Gender;
+			shirtToUpdate.Description = shirt.Description;
 
 			_db.SaveChanges();
 
