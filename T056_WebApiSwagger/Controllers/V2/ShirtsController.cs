@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using T056_WebApiSwagger.Attributes;
 using T056_WebApiSwagger.Data;
 using T056_WebApiSwagger.Filters.ActionFilters;
@@ -9,8 +10,9 @@ using T056_WebApiSwagger.Models;
 
 namespace T056_WebApiSwagger.Controllers.V2
 {
+	[ApiVersion(2)]
 	[ApiController]
-	[Route("api/v1/[controller]")]
+	[Route("api/[controller]")]
 	[JwtAuthFilter]
 	public class ShirtsController(ApplicationDbContext db) : ControllerBase
 	{

@@ -5,8 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddHttpClient("ShirtsApi", client =>
 {
-	//client.BaseAddress = new Uri("https://localhost:7294/api/v1/");
-	client.BaseAddress = new Uri("https://localhost:7229/api/v1/");
+	client.BaseAddress = new Uri("https://localhost:7229/api/");
 	client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 

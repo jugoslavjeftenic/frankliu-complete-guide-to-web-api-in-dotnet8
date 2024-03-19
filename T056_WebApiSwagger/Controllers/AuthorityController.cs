@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using T056_WebApiSwagger.Authority;
 
 namespace T056_WebApiSwagger.Controllers
 {
+	[ApiVersion(1)]
 	[ApiController]
 	public class AuthorityController(IConfiguration configuration) : ControllerBase
 	{

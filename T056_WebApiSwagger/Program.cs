@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using T056_WebApiSwagger.Data;
@@ -12,6 +13,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddApiVersioning(options =>
+{
+	options.AssumeDefaultVersionWhenUnspecified = true;
+	options.DefaultApiVersion = new ApiVersion(1);
+})
+.AddApiExplorer(options =>
+ {
+	 options.SubstituteApiVersionInUrl = true;
+	 options.GroupNameFormat = "'v'VVV";
+	 options.AssumeDefaultVersionWhenUnspecified = true;
+ });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
