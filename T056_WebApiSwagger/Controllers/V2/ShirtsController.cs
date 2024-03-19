@@ -12,7 +12,8 @@ namespace T056_WebApiSwagger.Controllers.V2
 {
 	[ApiVersion(2.0)]
 	[ApiController]
-	[Route("api/v{v:apiVersion}/[controller]")]
+	//[Route("api/v{v:apiVersion}/[controller]")]
+	[Route("api/[controller]")]
 	[JwtAuthFilter]
 	public class ShirtsController(ApplicationDbContext db) : ControllerBase
 	{
